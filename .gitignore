@@ -2,7 +2,6 @@
 .DS_Store
 target/
 temp/
-/deploy
 /debug/
 **/dep-dir.txt
 *.prefs
