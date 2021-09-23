@@ -1,0 +1,65 @@
+name: Deploy to uat
+
+# Controls when the action will run.
+on:
+  # Triggers the workflow on push to uat branch
+  push:
+    branches:
+      - uat
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      run-tests:
+        description: "Run Apex tests (yes/no)?"
+        default: "yes"
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check out code
+        uses: actions/checkout@v2
+
+      - name: install jq
+        run: sudo apt-get install -y jq
+
+      - name: set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: install Salesforce CLI (sfdx)
+        run: npm list -g sfdx-cli || npm install -g sfdx-cli
+
+      - name: package the source as metadata
+        run: ./build.sh target/wtax-dividends-$GITHUB_SHA.zip
+
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact
+          path: target/wtax-dividends-${{ env.GITHUB_SHA }}.zip
+
+      - name: write Ansible Vault password to file
+        run: echo "${{ secrets.VAULT_PASSWORD }}" >.vault-password
+
+      - name: decrypt the private key for the Continuous Integration connected app
+        run: ansible-vault decrypt --vault-password-file=.vault-password deploy/environments/uat/wtax--uat.key
+
+      - name: connect to UAT sandbox
+        run: |
+          sfdx auth:jwt:grant \
+              -i "O4WjszDshB6wi2F4iqHa40IQPoATPQl.Pr0m3oBx2g.7pXPsGxJVM0LQrBEVyS_d9yv3a..rAhYSuIvxknUaF" \
+              -f deploy/environments/uat/wtax--uat.key \
+              -r https://test.salesforce.com \
+              -u admin@wtax.prod.uat -s
+
+      - name: deploy to uat and run Apex tests
+        if: ${{ github.event.inputs == null || github.event.inputs.run-tests == 'yes' }}
+        run: TERM=xterm ./deploy.sh -x -f target/wtax-dividends-$GITHUB_SHA.zip -w 60 -d -t
+
+      - name: deploy to uat without running Apex tests
+        if: ${{ github.event.inputs != null && github.event.inputs.run-tests != 'yes' }}
+        run: TERM=xterm ./deploy.sh -x -f target/wtax-dividends-$GITHUB_SHA.zip -w 60 -d

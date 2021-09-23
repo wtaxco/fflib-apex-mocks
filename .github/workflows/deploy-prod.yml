@@ -1,0 +1,55 @@
+name: Deploy to prod
+
+# Controls when the action will run.
+on:
+  # Triggers the workflow on push to main branch
+  push:
+    branches:
+      - main
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check out code
+        uses: actions/checkout@v2
+
+      - name: install jq
+        run: sudo apt-get install -y jq
+
+      - name: set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: install Salesforce CLI (sfdx)
+        run: npm list -g sfdx-cli || npm install -g sfdx-cli
+
+      - name: package the source as metadata
+        run: ./build.sh target/wtax-dividends-$GITHUB_SHA.zip
+
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact
+          path: target/wtax-dividends-${{ env.GITHUB_SHA }}.zip
+
+      - name: write Ansible Vault password to file
+        run: echo "${{ secrets.VAULT_PASSWORD }}" >.vault-password
+
+      - name: decrypt the private key for the Continuous Integration connected app
+        run: ansible-vault decrypt --vault-password-file=.vault-password deploy/environments/prod/wtax-prod.key
+
+      - name: connect to prod org
+        run: |
+          sfdx auth:jwt:grant \
+              -i "3H7cm0QedwevwtVKpSJ4PXeI7kvPanBgB3qK0sBU06E5MSMka3xqeg9JETRkx8Z8PQxuZkUvlMJH10MQ8A9uw" \
+              -f deploy/environments/prod/wtax-prod.key \
+              -r https://login.salesforce.com \
+              -u admin@wtax.prod -s
+
+      - name: deploy to prod
+        run: TERM=xterm ./deploy.sh -x -f target/wtax-dividends-$GITHUB_SHA.zip -w 60 -t
