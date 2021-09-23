@@ -16,7 +16,7 @@ usage() {
   echo "    $0 -h"
   echo "Parameters:"
   echo "  -f zipfile  - A .zip file containing the metadata to deploy in metadata format. If omitted, the source"
-  echo "                in force-app is deployed directly to the org."
+  echo "                in ${source_dir} is deployed directly to the org."
   echo "  -u org      - Specifies the username or alias of the org to deploy to. If omitted, will deploy to the"
   echo "                org as indicated by the sfdx configuration variable 'defaultusername'".
   echo "  -d          - Deploy test data by running test data scripts in PROJECTDIR/scripts/data_scripts."
@@ -108,7 +108,7 @@ fi
 # Delete Apex classes marked for deletion
 if [ "${destructive_changes}" == "yes" ]; then
   # Determine which Apex classes are marked for deletion (have a "//DELETE" line)
-  components="$(sep=; grep -r '^\/\/ *DELETE$' force-app|awk -F':' '{print $1}'|while read line; do
+  components="$(sep=; grep -r '^\/\/ *DELETE$' ${source_dir}|awk -F':' '{print $1}'|while read line; do
     filename=`basename $line`
     ext=${filename##*.}
     if [ "${ext}" == "cls" ]; then
@@ -129,12 +129,12 @@ if [ "${destructive_changes}" == "yes" ]; then
 {
   "packageDirectories": [
     {
-      "path": "force-app"
+      "path": "${source_dir}"
     }
   ]
 }
 EOF
-      mkdir force-app
+      mkdir ${source_dir}
       # force:source:retrieve requires an explicit -u orgname
       sfdx force:source:retrieve -u "${org_name}" -m "${components}" --json >>.log || (
         echo "${bold}${red} failed."
@@ -143,12 +143,12 @@ EOF
       )
       echo -n "${bold}...${reset}"
       # Check if anything was retrieved. If not, everything is already deleted and we can skip destructive changes
-      number_of_files=`find force-app |wc -l`
+      number_of_files=`find ${source_dir} |wc -l`
       number_of_files=$(( number_of_files - 1))
       if [ ${number_of_files} -gt 0 ]; then
         # Convert to metadata format so we have a package.xml
         mkdir -p "${project_name}"
-        sfdx force:source:convert -d "${project_name}" -r force-app --json >>.log || (
+        sfdx force:source:convert -d "${project_name}" -r ${source_dir} --json >>.log || (
           echo "${bold}${red} failed."
           tail .log
           exit 1
@@ -184,7 +184,7 @@ if [ "x${runtests}" = "xproject" ]; then
   # Run project tests only
   # - Determine list of project tests
   delim=
-  testlist=$(find force-app/test -name '*.cls' | while read test; do
+  testlist=$(find ${source_dir}/test -name '*.cls' | while read test; do
     if ! grep -c '^\/\/ *DELETE$' "${test}" >/dev/null; then
       echo -n "${delim}`basename ${test} .cls`"
       delim=,
@@ -199,7 +199,7 @@ if [ "x${runtests}" = "xproject" ]; then
     sfdx force:mdapi:deploy -q "${deploymentId}" ${org_switch} -w ${wait}
   else
     echo "${bold}${yellow}* ${bold}Validating deployment...${reset}"
-    sfdx force:source:deploy -c -l RunSpecifiedTests -r "${testlist}" -p ${project_dir}/force-app ${org_switch} -w ${wait} || exit 1
+    sfdx force:source:deploy -c -l RunSpecifiedTests -r "${testlist}" -p ${project_dir}/${source_dir} ${org_switch} -w ${wait} || exit 1
     deploymentId=`sfdx force:source:deploy:report ${org_switch} --json|jq -r '.result.id'`
     echo "${bold}${yellow}* ${bold}Quick-deploying...${reset}"
     sfdx force:source:deploy -q "${deploymentId}" ${org_switch} -w ${wait} || exit 1
@@ -214,7 +214,7 @@ elif [ "x${runtests}" = "xorg" ]; then
     sfdx force:mdapi:deploy -q "${deploymentId}" ${org_switch} -w ${wait}
   else
     echo "${bullet} ${bold}Validating deployment...${reset}"
-    sfdx force:source:deploy -c -l RunLocalTests -p ${project_dir}/force-app ${org_switch} -w ${wait} || exit 1
+    sfdx force:source:deploy -c -l RunLocalTests -p ${project_dir}/${source_dir} ${org_switch} -w ${wait} || exit 1
     deploymentId=`sfdx force:source:deploy:report ${org_switch} --json|jq -r '.result.id'`
     echo "${bullet} ${bold}Quick-deploying...${reset}"
     sfdx force:source:deploy -q "${deploymentId}" ${org_switch} -w ${wait} || exit 1
@@ -230,7 +230,7 @@ else
     sfdx force:mdapi:deploy -q "${deploymentId}" ${org_switch} -w ${wait}
   else
     echo "${bullet} ${reset}${bold}Validating deployment...${reset}"
-    sfdx force:source:deploy -c -p ${project_dir}/force-app ${org_switch} -w ${wait} || exit 1
+    sfdx force:source:deploy -c -p ${project_dir}/${source_dir} ${org_switch} -w ${wait} || exit 1
     deploymentId=`sfdx force:source:deploy:report ${org_switch} --json|jq -r '.result.id'`
     echo "${bullet} ${reset}${bold}Quick-deploying...${reset}"
     sfdx force:source:deploy -q "${deploymentId}" ${org_switch} -w ${wait} || exit 1
