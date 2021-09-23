@@ -30,16 +30,6 @@ jobs:
         with:
           node-version: 14.x
 
-      - name: cache npm modules
-        uses: actions/cache@v2
-        with:
-          path: |
-            !/usr/local/lib/node_modules/webpack
-            !/usr/local/lib/node_modules/webpack-cli
-            !/usr/local/lib/node_modules/typescript
-            /usr/local/lib/node_modules
-          key: ${{ runner.os }}-fflib-apex-mocks-node_modules
-
       - name: install Salesforce CLI (sfdx)
         run: npm install -g sfdx-cli
 
