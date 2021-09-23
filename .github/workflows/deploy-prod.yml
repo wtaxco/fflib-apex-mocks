@@ -29,13 +29,13 @@ jobs:
         run: npm list -g sfdx-cli || npm install -g sfdx-cli
 
       - name: package the source as metadata
-        run: ./build.sh target/wtax-dividends-$GITHUB_SHA.zip
+        run: ./build.sh target/fflib-apex-mocks-$GITHUB_SHA.zip
 
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
           name: artifact
-          path: target/wtax-dividends-${{ env.GITHUB_SHA }}.zip
+          path: target/fflib-apex-mocks-${{ env.GITHUB_SHA }}.zip
 
       - name: write Ansible Vault password to file
         run: echo "${{ secrets.VAULT_PASSWORD }}" >.vault-password
@@ -52,4 +52,4 @@ jobs:
               -u admin@wtax.prod -s
 
       - name: deploy to prod
-        run: TERM=xterm ./deploy.sh -x -f target/wtax-dividends-$GITHUB_SHA.zip -w 60 -t
+        run: TERM=xterm ./deploy.sh -x -f target/fflib-apex-mocks-$GITHUB_SHA.zip -w 60 -t

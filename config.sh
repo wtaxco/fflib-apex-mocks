@@ -1,7 +1,7 @@
 project_name="fflib-apex-mocks"
 project_description="FFLib ApexMocks Framework"
 
-source_dir=force-app
+source_dir=sfdx-source
 
 # scratch
 scratch_org_alias=wtax-fflib-apex-mocks-scratch
