@@ -51,7 +51,7 @@ jobs:
       - name: connect to portalqa sandbox
         run: |
           sfdx auth:jwt:grant \
-              -i "1c63CJDUKDLL2NGUFY583DNA.VVtm2f6.w8hOqPC3eY3of_1GNenYTWK2nQJv.OW9U6MqYrI_23BvN7rItrQV" \
+              -i "7qNu2OoBRDB7ydducrP_8Uhhy69WhLfl1n7Z31tASDkfihO1C9D2S9xEKfKtCQuo9NaM59OW3LAZKFCCi20SW" \
               -f deploy/environments/portalqa/wtax--portalqa.key \
               -r https://test.salesforce.com \
               -u admin@wtax.prod.portalqa -s
