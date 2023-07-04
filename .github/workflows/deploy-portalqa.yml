@@ -1,4 +1,4 @@
-name: Deploy to dev
+name: Deploy to portalqa
 
 # Controls when the action will run.
 on:
@@ -18,7 +18,7 @@ on:
 
 jobs:
   deploy:
-    uses: wtaxco/wtax-github-actions-workflows/.github/workflows/deploy-sfdx-project-to-developer.yml@main
+    uses: wtaxco/wtax-github-actions-workflows/.github/workflows/deploy-sfdx-project-to-portalqa.yml@main
     with:
       run-tests: ${{ inputs.run-tests == null || inputs.run-tests }}
     secrets:
