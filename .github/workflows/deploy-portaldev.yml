@@ -11,55 +11,15 @@ on:
   workflow_dispatch:
     inputs:
       run-tests:
-        description: "Run Apex tests (yes/no)?"
-        default: "yes"
+        description: "Run Apex tests"
+        type: boolean
+        default: true
         required: true
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: check out code
-        uses: actions/checkout@v2
-
-      - name: install jq
-        run: sudo apt-get install -y jq
-
-      - name: set up Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 14.x
-
-      - name: install Salesforce CLI (sfdx)
-        run: npm install -g sfdx-cli
-
-      - name: package the source as metadata
-        run: ./build.sh target/fflib-apex-mocks-$GITHUB_SHA.zip
-
-      - name: Archive artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: artifact
-          path: target/fflib-apex-mocks-${{ env.GITHUB_SHA }}.zip
-
-      - name: write Ansible Vault password to file
-        run: echo "${{ secrets.VAULT_PASSWORD }}" >.vault-password
-
-      - name: decrypt the private key for the Continuous Integration connected app
-        run: ansible-vault decrypt --vault-password-file=.vault-password deploy/environments/portaldev/wtax--portaldev.key
-
-      - name: connect to portaldev sandbox
-        run: |
-          sfdx auth:jwt:grant \
-              -i "1c63CJDUKDLL2NGUFY583DNA.VVtm2f6.w8hOqPC3eY3of_1GNenYTWK2nQJv.OW9U6MqYrI_23BvN7rItrQV" \
-              -f deploy/environments/portaldev/wtax--portaldev.key \
-              -r https://test.salesforce.com \
-              -u admin@wtax.prod.portaldev -s
-
-      - name: deploy to portaldev and run Apex tests
-        if: ${{ github.event.inputs == null || github.event.inputs.run-tests == 'yes' }}
-        run: TERM=xterm ./deploy.sh -x -f target/fflib-apex-mocks-$GITHUB_SHA.zip -w 60 -d -t
-
-      - name: deploy to portaldev without running Apex tests
-        if: ${{ github.event.inputs != null && github.event.inputs.run-tests != 'yes' }}
-        run: TERM=xterm ./deploy.sh -x -f target/fflib-apex-mocks-$GITHUB_SHA.zip -w 60 -d
+    uses: wtaxco/wtax-github-actions-workflows/.github/workflows/deploy-sfdx-project-to-portaldev.yml@main
+    with:
+      run-tests: ${{ inputs.run-tests == null || inputs.run-tests }}
+    secrets:
+      ansible-vault-password: ${{ secrets.VAULT_PASSWORD }}
