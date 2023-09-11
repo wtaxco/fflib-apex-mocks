@@ -1,0 +1,11 @@
+name: Push to scratch org and run tests
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: wtaxco/wtax-github-actions-workflows/.github/workflows/build-sfdx-project.yml@1.4.4
+    secrets:
+      ansible-vault-password: ${{ secrets.VAULT_PASSWORD }}

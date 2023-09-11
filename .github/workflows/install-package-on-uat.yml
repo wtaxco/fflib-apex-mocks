@@ -1,0 +1,25 @@
+name: Install package version on uat
+
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        description: "Package Version Id (04t...)"
+        type: string
+        default: ''
+        required: false
+      version-number:
+        description: "Version number, e.g. 1.0.1"
+        type: string
+        default: ''
+        required: false
+
+jobs:
+  install-to-developer:
+    uses: wtaxco/wtax-github-actions-workflows/.github/workflows/install-sfdx-package-on-uat.yml@main
+    with:
+      version-number: ${{ inputs.version-number }}
+      package: ${{ inputs.package }}
+      source-directory: sfdx-source/apex-mocks
+    secrets:
+      ansible-vault-password: ${{ secrets.VAULT_PASSWORD }}

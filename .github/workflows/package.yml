@@ -1,0 +1,22 @@
+name: Create package version
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+    inputs:
+      promote:
+        description: "Promote package version to released"
+        type: boolean
+        default: false
+        required: true
+
+jobs:
+  package:
+    uses: wtaxco/wtax-github-actions-workflows/.github/workflows/create-sfdx-package.yml@main
+    with:
+      source-directory: sfdx-source/apex-mocks
+      promote: ${{ inputs.promote != null && inputs.promote }}
+    secrets:
+      ansible-vault-password: ${{ secrets.VAULT_PASSWORD }}
