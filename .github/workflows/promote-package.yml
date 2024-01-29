@@ -9,7 +9,7 @@ on:
         default: ''
         required: false
       version-number:
-        description: "Version number, e.g. 1.0.1.2"
+        description: "Version number, e.g. 1.0.1"
         type: string
         default: ''
         required: false
