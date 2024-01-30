@@ -15,7 +15,7 @@ on:
         required: false
 
 jobs:
-  install-to-developer:
+  install-to-prod:
     uses: wtaxco/wtax-github-actions-workflows/.github/workflows/install-sfdx-package-on-prod.yml@main
     with:
       version-number: ${{ inputs.version-number }}
