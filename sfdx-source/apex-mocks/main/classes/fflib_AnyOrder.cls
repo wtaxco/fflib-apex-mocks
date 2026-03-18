@@ -10,6 +10,13 @@
 @NamespaceAccessible
 public class fflib_AnyOrder extends fflib_MethodVerifier
 {
+
+	private final fflib_MethodCountRecorder methodCountRecorder;
+
+	public fflib_AnyOrder(fflib_MethodCountRecorder methodCountRecorder) {
+		this.methodCountRecorder = methodCountRecorder;
+	}
+
 	/*
 	 * Verifies a method was invoked the expected number of times, with the expected arguments.
 	 * @param qualifiedMethod The method to be verified.
@@ -22,7 +29,7 @@ public class fflib_AnyOrder extends fflib_MethodVerifier
 		fflib_VerificationMode verificationMode)
 	{
 		List<fflib_IMatcher> expectedMatchers = fflib_Match.Matching ? fflib_Match.getAndClearMatchers(expectedArguments.argValues.size()) : null;
-		List<fflib_MethodArgValues> actualArguments = fflib_MethodCountRecorder.getMethodArgumentsByTypeName().get(qm);
+		List<fflib_MethodArgValues> actualArguments = methodCountRecorder.getMethodArgumentsByTypeName().get(qm);
 
 		Integer methodCount = getMethodCount(expectedArguments, expectedMatchers, actualArguments);
 

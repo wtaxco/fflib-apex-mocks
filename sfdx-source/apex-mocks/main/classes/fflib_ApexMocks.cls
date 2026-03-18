@@ -52,7 +52,7 @@ public with sharing class fflib_ApexMocks implements System.StubProvider
 
 		this.methodCountRecorder = new fflib_MethodCountRecorder();
 		this.verificationMode = new fflib_VerificationMode();
-		this.methodVerifier = new fflib_AnyOrder();
+		this.methodVerifier = new fflib_AnyOrder(methodCountRecorder);
 
 		this.methodReturnValueRecorder = new fflib_MethodReturnValueRecorder();
 
@@ -138,7 +138,7 @@ public with sharing class fflib_ApexMocks implements System.StubProvider
 	public void verifyMethodCall(fflib_InvocationOnMock mockInvocation)
 	{
 		this.methodVerifier.verifyMethodCall(mockInvocation, verificationMode);
-		this.methodVerifier = new fflib_AnyOrder();
+		this.methodVerifier = new fflib_AnyOrder(methodCountRecorder);
 
 		this.verifying = false;
 	}
@@ -179,6 +179,14 @@ public with sharing class fflib_ApexMocks implements System.StubProvider
 	public void recordMethod(fflib_InvocationOnMock mockInvocation)
 	{
 		methodCountRecorder.recordMethod(mockInvocation);
+	}
+
+	/**
+	 * Retrieve method calls on mock objects that were recorded, in the order in which they were recorded.
+	 * @return The list of methods called in order.
+	 */
+	public List<fflib_InvocationOnMock> getOrderedMethodCalls() {
+		return methodCountRecorder.getOrderedMethodCalls();
 	}
 
 	/**
@@ -296,6 +304,15 @@ public with sharing class fflib_ApexMocks implements System.StubProvider
 		}
 
 		return null;
+	}
+
+	/**
+	 * Creates an instance of {@link fflib_InOrder} linked to this ApexMocks instance.
+	 * @param unorderedMockInstances One or more mock implementation classes (listed in any order), whose ordered method calls require verification.
+	 * @return an {@link fflib_InOrder} instance
+	 */
+	public fflib_InOrder inOrder(List<Object> unorderedMockInstances) {
+		return new fflib_InOrder(this, unorderedMockInstances);
 	}
 
 	/**
