@@ -3,20 +3,51 @@ name: Create package version
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
-    inputs:
-      promote:
-        description: "Promote package version to released"
-        type: boolean
-        default: false
-        required: true
 
 jobs:
-  package:
+  build:
     uses: wtaxco/wtax-github-actions-workflows/.github/workflows/create-sfdx-package.yml@main
     with:
-      source-directory: sfdx-source/apex-mocks
-      promote: ${{ inputs.promote != null && inputs.promote }}
+      sonar-quality-gate: true
+    secrets:
+      ansible-vault-password: ${{ secrets.VAULT_PASSWORD }}
+  promote:
+    needs:
+      - build
+    uses: wtaxco/wtax-github-actions-workflows/.github/workflows/promote-sfdx-package.yml@main
+    with:
+      package: ${{ needs.build.outputs.package-version-id }}
+      environment: packaging
+    secrets:
+      ansible-vault-password: ${{ secrets.VAULT_PASSWORD }}
+  install-on-developer:
+    needs:
+      - build
+    uses: wtaxco/wtax-github-actions-workflows/.github/workflows/install-sfdx-package-on-developer.yml@main
+    with:
+      package: ${{ needs.build.outputs.package-version-id }}
+    secrets:
+      ansible-vault-password: ${{ secrets.VAULT_PASSWORD }}
+  install-on-uat:
+    needs:
+      - build
+      - install-on-developer
+    uses: wtaxco/wtax-github-actions-workflows/.github/workflows/install-sfdx-package-on-uat.yml@main
+    with:
+      package: ${{ needs.build.outputs.package-version-id }}
+      environment: uat
+    secrets:
+      ansible-vault-password: ${{ secrets.VAULT_PASSWORD }}
+  install-on-prod:
+    needs:
+      - build
+      - promote
+      - install-on-uat
+    uses: wtaxco/wtax-github-actions-workflows/.github/workflows/install-sfdx-package-on-prod.yml@main
+    with:
+      package: ${{ needs.build.outputs.package-version-id }}
+      environment: production
     secrets:
       ansible-vault-password: ${{ secrets.VAULT_PASSWORD }}

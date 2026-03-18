@@ -6,6 +6,6 @@ on:
 
 jobs:
   build:
-    uses: wtaxco/wtax-github-actions-workflows/.github/workflows/build-sfdx-project.yml@1.4.4
+    uses: wtaxco/wtax-github-actions-workflows/.github/workflows/build-sfdx-project.yml@main
     secrets:
       ansible-vault-password: ${{ secrets.VAULT_PASSWORD }}
