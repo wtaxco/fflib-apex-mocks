@@ -12,7 +12,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -50,7 +50,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -74,7 +74,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -109,7 +109,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -144,7 +144,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-0');
@@ -163,7 +163,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-0');
@@ -200,7 +200,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 
@@ -225,7 +225,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -247,7 +247,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -286,7 +286,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -322,7 +322,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -342,7 +342,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -362,7 +362,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -400,7 +400,7 @@ private class fflib_InOrderTest
 		fflib_MyList secondMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
 		fflib_MyList thirdMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
 
-		fflib_InOrder inOrder = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock, secondMock });
+		fflib_InOrder inOrder = MY_MOCKS.inOrder(new List<Object>{ firstMock, secondMock });
 
 		// When
 		firstMock.add('1-1');
@@ -435,8 +435,8 @@ private class fflib_InOrderTest
 		fflib_MyList secondMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
 		fflib_MyList thirdMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
 
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
-		fflib_InOrder inOrder2 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock, secondMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
+		fflib_InOrder inOrder2 = MY_MOCKS.inOrder(new List<Object>{ firstMock, secondMock });
 
 		// When
 		firstMock.add('1-1');
@@ -474,7 +474,7 @@ private class fflib_InOrderTest
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
 		fflib_MyList secondMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
 
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -507,7 +507,7 @@ private class fflib_InOrderTest
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
 
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		String customErrorMesage = 'Some custom error message';
 
@@ -542,7 +542,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -573,7 +573,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -605,7 +605,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -628,7 +628,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -651,7 +651,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -690,7 +690,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -729,7 +729,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -754,7 +754,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1', '1-1', '1-1', '1-1');
@@ -781,7 +781,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1', '1-1', '1-1', '1-1');
@@ -809,8 +809,8 @@ private class fflib_InOrderTest
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
 		fflib_MyList secondMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
-		fflib_InOrder inOrder2 = new fflib_InOrder(MY_MOCKS, new List<Object>{ secondMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
+		fflib_InOrder inOrder2 = MY_MOCKS.inOrder(new List<Object>{ secondMock });
 
 		// When
 		firstMock.add('1-1');
@@ -835,7 +835,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -860,7 +860,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -886,7 +886,7 @@ private class fflib_InOrderTest
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
 		fflib_MyList secondMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		secondMock.add('1-2');
@@ -898,7 +898,7 @@ private class fflib_InOrderTest
 	static void thatStrictVerificationCanBePerformed()
 	{
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -916,7 +916,7 @@ private class fflib_InOrderTest
 	static void thatMixedVerificationDoNotInterfierWithOtherImplementationChecking()
 	{
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -939,7 +939,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1'); //consumed by -> verify(firstMock, MY_MOCKS.calls(1))).add('1-1');
@@ -962,7 +962,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1'); //consumed by -> verify(firstMock, MY_MOCKS.calls(1))).add('1-1');
@@ -985,7 +985,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1'); //consumed by -> verify(firstMock, MY_MOCKS.calls(1))).add('1-1');
@@ -1023,7 +1023,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1'); //consumed by -> verify(firstMock, MY_MOCKS.calls(1))).add('1-1');
@@ -1066,7 +1066,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -1088,7 +1088,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -1103,7 +1103,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -1120,7 +1120,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -1152,7 +1152,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -1189,7 +1189,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -1211,7 +1211,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -1249,7 +1249,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -1287,7 +1287,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -1313,7 +1313,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -1340,7 +1340,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -1372,7 +1372,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -1401,7 +1401,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -1441,7 +1441,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -1467,7 +1467,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -1507,7 +1507,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -1529,7 +1529,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -1567,7 +1567,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -1605,7 +1605,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -1629,7 +1629,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -1669,7 +1669,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -1695,7 +1695,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		// When
 		firstMock.add('1-1');
@@ -1721,7 +1721,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		//When
 		firstMock.add('1-1');
@@ -1761,7 +1761,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		//When
 		firstMock.get2(1, '1-1');
@@ -1782,7 +1782,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		//When
 		firstMock.get2(1, '1-1');
@@ -1808,7 +1808,7 @@ private class fflib_InOrderTest
 	{
 		// Given
 		fflib_MyList firstMock = (fflib_MyList)MY_MOCKS.mock(fflib_MyList.class);
-		fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{ firstMock });
+		fflib_InOrder inOrder1 = MY_MOCKS.inOrder(new List<Object>{ firstMock });
 
 		//When
 		firstMock.get2(1, '1-1');
