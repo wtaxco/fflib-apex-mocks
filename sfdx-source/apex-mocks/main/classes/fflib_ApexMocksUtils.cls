@@ -23,6 +23,7 @@
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+@NamespaceAccessible
 public class fflib_ApexMocksUtils
 {
 	/**
@@ -76,6 +77,7 @@ public class fflib_ApexMocksUtils
 	 * Generic overload to makeRelationship. Enables creation of
 	 * relationships in a loosely-coupled manner. 
 	 */
+	@NamespaceAccessible
 	public static Object makeRelationship(
 			String parentTypeName,
 			String childTypeName,
@@ -95,17 +97,31 @@ public class fflib_ApexMocksUtils
 	 * Gives the ability to set test values on formula
 	 * and other read-only fields of mock SObjects
 	 */
+	@NamespaceAccessible
 	public static Object setReadOnlyFields(SObject objInstance, Type deserializeType, Map<SObjectField, Object> properties) {
 
-		Map<String, Object> mergedMap = new Map<String, Object>(objInstance.getPopulatedFieldsAsMap());
+		Map<String, Object> fieldNameMap = new Map<String, Object>();
 		for (SObjectField field : properties.keySet()) {
-			// Merge the values from the properties map into the fields already set on the object
-			mergedMap.put(field.getDescribe().getName(), properties.get(field));
+			// Resolve the fieldNames from the FieldTokens
+			fieldNameMap.put(field.getDescribe().getName(), properties.get(field));
 		}
+		return (SObject) setReadOnlyFields(objInstance, deserializeType, fieldNameMap);
+	}
+
+	/**
+	 * Generic overload to setReadOnlyFields. Enables setting test
+	 * values on read-only fields by their name
+	 */
+	@NamespaceAccessible
+	public static Object setReadOnlyFields(SObject objInstance, Type deserializeType, Map<String, Object> properties) {
+
+		Map<String, Object> mergedMap = new Map<String, Object>(objInstance.getPopulatedFieldsAsMap());
+		// Merge the values from the properties map into the fields already set on the object
+		mergedMap.putAll(properties);
 		// Serialize the merged map, and then deserialize it as the desired object type.
 		String jsonString = JSON.serializePretty(mergedMap);
 		return (SObject) JSON.deserialize(jsonString, deserializeType);
-	} 
+	}
 
 	/**
 	 * Helper Methods
@@ -177,39 +193,43 @@ public class fflib_ApexMocksUtils
 	private static void streamTokens(JSONParser fromStream, JSONGenerator toStream, JSONParserEvents events)
 	{
 		Integer depth = 0;
-		while (fromStream.nextToken()!=null)
+		while (fromStream.nextToken() != null)
 		{
 			// Give event handler chance to inject
-			if(events!=null)
+			if (events != null) {
 				events.nextToken(fromStream, depth, toStream);
+			}
+				
 			// Forward to output stream
-			JSONToken currentToken = fromStream.getCurrentToken();
-			if(currentToken == JSONToken.START_ARRAY) {
-				toStream.writeStartArray();
-				depth++;
-			}
-			else if(currentToken == JSONToken.START_OBJECT) {
-				toStream.writeStartObject();
-				depth++;
-			}
-			else if(currentToken == JSONToken.FIELD_NAME)
-				toStream.writeFieldName(fromStream.getCurrentName());
-			else if(currentToken == JSONToken.VALUE_STRING ||
-					currentToken == JSONToken.VALUE_FALSE ||
-					currentToken == JSONToken.VALUE_TRUE ||
-					currentToken == JSONToken.VALUE_NUMBER_FLOAT ||
-					currentToken == JSONToken.VALUE_NUMBER_INT)
-				toStream.writeString(fromStream.getText());
-			else if(currentToken == JSONToken.END_OBJECT) {
-				toStream.writeEndObject();
-				depth--;
-			}
-			else if(currentToken == JSONToken.END_ARRAY) {
-				toStream.writeEndArray();
-				depth--;
+			switch on fromStream.getCurrentToken() {
+				when START_ARRAY {
+					toStream.writeStartArray();
+					depth++;
+				}
+				when START_OBJECT {
+					toStream.writeStartObject();
+					depth++;
+				}
+				when FIELD_NAME {
+					toStream.writeFieldName(fromStream.getCurrentName());
+				}
+				when VALUE_STRING, VALUE_FALSE, VALUE_TRUE, VALUE_NUMBER_FLOAT, VALUE_NUMBER_INT {
+					toStream.writeString(fromStream.getText());
+				}
+			    when VALUE_NULL {
+					toStream.writeNull();
+				}
+				when END_OBJECT {
+					toStream.writeEndObject();
+					depth--;
+				}
+				when END_ARRAY {
+					toStream.writeEndArray();
+					depth--;
+				}
 			}
 			// Don't continue to stream beyond the initial starting point
-			if(depth==0) 
+			if (depth == 0) 
 				break;
 		}
 	}
