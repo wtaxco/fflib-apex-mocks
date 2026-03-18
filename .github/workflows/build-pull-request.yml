@@ -7,5 +7,7 @@ on:
 jobs:
   build:
     uses: wtaxco/wtax-github-actions-workflows/.github/workflows/build-sfdx-project.yml@main
+    with:
+      source-directory: sfdx-source/apex-mocks
     secrets:
       ansible-vault-password: ${{ secrets.VAULT_PASSWORD }}

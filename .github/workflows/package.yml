@@ -10,6 +10,7 @@ jobs:
   build:
     uses: wtaxco/wtax-github-actions-workflows/.github/workflows/create-sfdx-package.yml@main
     with:
+      source-directory: sfdx-source/apex-mocks
       sonar-quality-gate: true
     secrets:
       ansible-vault-password: ${{ secrets.VAULT_PASSWORD }}
@@ -18,6 +19,7 @@ jobs:
       - build
     uses: wtaxco/wtax-github-actions-workflows/.github/workflows/promote-sfdx-package.yml@main
     with:
+      source-directory: sfdx-source/apex-mocks
       package: ${{ needs.build.outputs.package-version-id }}
       environment: packaging
     secrets:
@@ -27,6 +29,7 @@ jobs:
       - build
     uses: wtaxco/wtax-github-actions-workflows/.github/workflows/install-sfdx-package-on-developer.yml@main
     with:
+      source-directory: sfdx-source/apex-mocks
       package: ${{ needs.build.outputs.package-version-id }}
     secrets:
       ansible-vault-password: ${{ secrets.VAULT_PASSWORD }}
@@ -36,6 +39,7 @@ jobs:
       - install-on-developer
     uses: wtaxco/wtax-github-actions-workflows/.github/workflows/install-sfdx-package-on-uat.yml@main
     with:
+      source-directory: sfdx-source/apex-mocks
       package: ${{ needs.build.outputs.package-version-id }}
       environment: uat
     secrets:
@@ -47,6 +51,7 @@ jobs:
       - install-on-uat
     uses: wtaxco/wtax-github-actions-workflows/.github/workflows/install-sfdx-package-on-prod.yml@main
     with:
+      source-directory: sfdx-source/apex-mocks
       package: ${{ needs.build.outputs.package-version-id }}
       environment: production
     secrets:
